@@ -30,6 +30,13 @@ const findById = (id) => {
     .first();
 };
 
+// GET task by Project ID
+const findByProjectId = (id) => {
+  return db("tasks")
+    .where("tasks.project_id", id)
+    .select("tasks.id", "tasks.description", "tasks.notes", "tasks.completed");
+};
+
 // POST new task
 const add = async (task) => {
   const [id] = await db("tasks").insert(task);
@@ -37,4 +44,4 @@ const add = async (task) => {
   return findById(id);
 };
 
-module.exports = { find, findById, add };
+module.exports = { find, findById, findByProjectId, add };
