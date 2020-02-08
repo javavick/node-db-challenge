@@ -9,8 +9,8 @@ const find = () => {
       "tasks.description",
       "tasks.notes",
       "tasks.completed",
-      "projects.name",
-      "projects.description"
+      "projects.name as project_name",
+      "projects.description as project_description"
     );
 };
 
@@ -18,14 +18,14 @@ const find = () => {
 const findById = (id) => {
   return db("tasks")
     .join("projects", "tasks.project_id", "projects.id")
-    .where({ id })
+    .where("tasks.id", id)
     .select(
       "tasks.id",
       "tasks.description",
       "tasks.notes",
       "tasks.completed",
-      "projects.name",
-      "projects.description"
+      "projects.name as project_name",
+      "projects.description as project_description"
     )
     .first();
 };
