@@ -37,11 +37,11 @@ exports.up = async function(knex) {
       .references("id")
       .inTable("projects");
     tbl
-      .integer("resources_id")
+      .integer("resource_id")
       .notNullable()
       .references("id")
       .inTable("resources");
-    tbl.primary(["project_id", "resources_id"]);
+    tbl.primary(["project_id", "resource_id"]);
   });
 };
 
